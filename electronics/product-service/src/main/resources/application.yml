@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://phonedb:3306/phone
+    username: root
+    password: 123456
+  application:
+    name: product-service
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://discover-server:8761/eureka
+
+axon:
+  axonserver:
+    servers: axon
+    component-name: product-service
+
+amazonProperties:
+  endpointUrl: https://s3.ap-southeast-1.amazonaws.com
+  accessKey: AKIAYBZNGYRHDLUW7EWB
+  secretKey: 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
+  bucketName: upload-images-19245
+
+

@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://phonedb:3306/orders
+    username: root
+    password: 123456
+  application:
+    name: order-service
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://discover-server:8761/eureka
+
+axon:
+  axonserver:
+    servers: axon
+    component-name: order-service
+
+
+

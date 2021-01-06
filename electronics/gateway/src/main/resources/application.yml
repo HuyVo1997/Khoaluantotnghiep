@@ -1,0 +1,49 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://phonedb:3306/user
+    username: root
+    password: 123456
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  application:
+    name: "gateway-service"
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    product-service:
+      path: /products/**
+      service-id: product-service
+    order-service:
+      path : /orders/**
+      service-id: order-service
+  ignored-headers : Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+        defaultZone: http://discover-server:8761/eureka
+
+
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 60000
